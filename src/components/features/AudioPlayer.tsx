@@ -23,19 +23,19 @@ export function AudioPlayer({ entryId, className = '' }: AudioPlayerProps) {
       <div
         onClick={() => toggle(entryId)}
         className={`
-          min-w-[80px] min-h-[80px]
+          w-full min-h-[80px]
           bg-gradient-to-b ${config.bg}
           border-3 border-[${config.border}]
           rounded-2xl shadow-md
           flex items-center justify-center gap-3
           px-6 py-4 cursor-pointer
-          transform hover:scale-105 active:scale-95
+          transform hover:scale-[1.02] active:scale-[0.98]
           transition-all duration-200
           ${state === 'loading' ? 'opacity-70 cursor-wait' : ''}
         `}
       >
-        <span className="text-3xl">{config.icon}</span>
-        <span className="text-base font-bold text-white drop-shadow-sm">
+        <span className="text-2xl sm:text-3xl">{config.icon}</span>
+        <span className="text-sm sm:text-base font-bold text-white drop-shadow-sm">
           {config.label}
         </span>
       </div>
