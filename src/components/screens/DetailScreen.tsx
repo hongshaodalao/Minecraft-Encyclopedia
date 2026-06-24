@@ -54,6 +54,19 @@ export function DetailScreen({ entry, onBack, onPrev, onNext, onImageClick }: De
               <AudioPlayer entryId={entry.audio} />
             </div>
 
+            {/* 朗读文字（口语版） */}
+            <div className="bg-gradient-to-r from-[#E3F2FD] to-[#BBDEFB] rounded-2xl border-3 border-[#64B5F6] shadow-md p-5 sm:p-6">
+              <div className="flex items-start gap-4">
+                <span className="text-2xl flex-shrink-0">🗣️</span>
+                <div>
+                  <p className="text-xs font-bold text-[#1565C0] mb-2">语音内容</p>
+                  <p className="text-base text-[#5D4037] leading-relaxed font-medium italic">
+                    "{entry.audioText}"
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* 描述文字 */}
             <div className="bg-white rounded-2xl border-3 border-[#D7CCC8] shadow-md p-5 sm:p-6">
               <div className="flex items-start gap-4">

@@ -6,12 +6,12 @@ interface AudioPlayerProps {
   className?: string
 }
 
-const stateConfig: Record<AudioState, { icon: string; label: string; bg: string; border: string }> = {
-  idle: { icon: '▶️', label: '点击播放', bg: 'from-[#A5D6A7] to-[#66BB6A]', border: '#4CAF50' },
-  loading: { icon: '⏳', label: '加载中...', bg: 'from-[#FFE082] to-[#FFD54F]', border: '#F9A825' },
-  playing: { icon: '⏸️', label: '播放中', bg: 'from-[#90CAF9] to-[#42A5F5]', border: '#1E88E5' },
-  paused: { icon: '▶️', label: '继续播放', bg: 'from-[#A5D6A7] to-[#66BB6A]', border: '#4CAF50' },
-  error: { icon: '❌', label: '播放失败', bg: 'from-[#EF9A9A] to-[#EF5350]', border: '#E53935' },
+const stateConfig: Record<AudioState, { icon: string; label: string; bg: string }> = {
+  idle: { icon: '▶️', label: '点击播放语音', bg: 'from-[#A5D6A7] to-[#66BB6A]' },
+  loading: { icon: '⏳', label: '加载中...', bg: 'from-[#FFE082] to-[#FFD54F]' },
+  playing: { icon: '🔊', label: '播放中...', bg: 'from-[#90CAF9] to-[#42A5F5]' },
+  paused: { icon: '▶️', label: '继续播放', bg: 'from-[#A5D6A7] to-[#66BB6A]' },
+  error: { icon: '🔇', label: '语音文件缺失', bg: 'from-[#FFCC80] to-[#FFB74D]' },
 }
 
 export function AudioPlayer({ entryId, className = '' }: AudioPlayerProps) {
@@ -25,7 +25,7 @@ export function AudioPlayer({ entryId, className = '' }: AudioPlayerProps) {
         className={`
           w-full
           bg-gradient-to-b ${config.bg}
-          border-3 border-[${config.border}]
+          border-3 border-[#8D6E63]
           rounded-2xl shadow-md
           flex items-center justify-center gap-4
           px-8 py-5 cursor-pointer
@@ -35,10 +35,15 @@ export function AudioPlayer({ entryId, className = '' }: AudioPlayerProps) {
         `}
       >
         <span className="text-3xl">{config.icon}</span>
-        <span className="text-base font-bold text-white drop-shadow-sm">
+        <span className="text-base font-bold text-[#5D4037] drop-shadow-sm">
           {config.label}
         </span>
       </div>
+      {state === 'error' && (
+        <p className="text-center text-xs text-[#8D6E63] mt-2">
+          请将语音文件放入 public/audio/{entryId}.m4a
+        </p>
+      )}
     </div>
   )
 }
