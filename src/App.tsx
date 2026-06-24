@@ -28,8 +28,11 @@ function App() {
 
   if (!entry) {
     return (
-      <div className="min-h-screen bg-[#87CEEB] flex items-center justify-center">
-        <p className="font-['Press_Start_2P'] text-[#3E2723]">找不到词条</p>
+      <div className="min-h-screen paper-bg flex items-center justify-center">
+        <div className="bg-white rounded-2xl border-3 border-[#D7CCC8] shadow-md p-8 text-center">
+          <span className="text-5xl mb-4 block">😕</span>
+          <p className="text-lg font-bold text-[#5D4037]">找不到词条</p>
+        </div>
       </div>
     )
   }

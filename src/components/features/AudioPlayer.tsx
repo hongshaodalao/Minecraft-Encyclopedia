@@ -6,12 +6,12 @@ interface AudioPlayerProps {
   className?: string
 }
 
-const stateConfig: Record<AudioState, { icon: string; label: string; color: string }> = {
-  idle: { icon: '▶', label: '点击播放', color: 'from-[#4CAF50] to-[#2E7D32]' },
-  loading: { icon: '⏳', label: '加载中...', color: 'from-[#FF9800] to-[#F57C00]' },
-  playing: { icon: '⏸', label: '播放中', color: 'from-[#2196F3] to-[#1565C0]' },
-  paused: { icon: '▶', label: '继续播放', color: 'from-[#4CAF50] to-[#2E7D32]' },
-  error: { icon: '❌', label: '播放失败', color: 'from-[#F44336] to-[#C62828]' },
+const stateConfig: Record<AudioState, { icon: string; label: string; bg: string; border: string }> = {
+  idle: { icon: '▶️', label: '点击播放', bg: 'from-[#A5D6A7] to-[#66BB6A]', border: '#4CAF50' },
+  loading: { icon: '⏳', label: '加载中...', bg: 'from-[#FFE082] to-[#FFD54F]', border: '#F9A825' },
+  playing: { icon: '⏸️', label: '播放中', bg: 'from-[#90CAF9] to-[#42A5F5]', border: '#1E88E5' },
+  paused: { icon: '▶️', label: '继续播放', bg: 'from-[#A5D6A7] to-[#66BB6A]', border: '#4CAF50' },
+  error: { icon: '❌', label: '播放失败', bg: 'from-[#EF9A9A] to-[#EF5350]', border: '#E53935' },
 }
 
 export function AudioPlayer({ entryId, className = '' }: AudioPlayerProps) {
@@ -24,8 +24,9 @@ export function AudioPlayer({ entryId, className = '' }: AudioPlayerProps) {
         onClick={() => toggle(entryId)}
         className={`
           min-w-[80px] min-h-[80px]
-          bg-gradient-to-b ${config.color}
-          border-4 border-[#3E2723] shadow-[6px_6px_0px_0px_rgba(0,0,0,0.4)]
+          bg-gradient-to-b ${config.bg}
+          border-3 border-[${config.border}]
+          rounded-2xl shadow-md
           flex items-center justify-center gap-3
           px-6 py-4 cursor-pointer
           transform hover:scale-105 active:scale-95
@@ -34,7 +35,7 @@ export function AudioPlayer({ entryId, className = '' }: AudioPlayerProps) {
         `}
       >
         <span className="text-3xl">{config.icon}</span>
-        <span className="font-['Press_Start_2P'] text-white text-sm drop-shadow-md">
+        <span className="text-base font-bold text-white drop-shadow-sm">
           {config.label}
         </span>
       </div>
