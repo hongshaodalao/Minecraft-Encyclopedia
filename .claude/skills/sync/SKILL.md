@@ -31,4 +31,4 @@ Auto-generated messages follow Conventional Commits:
 ## Remote
 
 Pushes to the remote configured in `git remote -v`.
-Default: `git@github.com:hongshaodalao/Minecaft-Encyclopedia.git`
+Default: `git@github.com:hongshaodalao/Minecraft-Encyclopedia.git`
