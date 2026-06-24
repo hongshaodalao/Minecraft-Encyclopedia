@@ -46,7 +46,7 @@ export function CoverScreen({ onExplore }: CoverScreenProps) {
         {/* 特性标签 */}
         <div className="flex flex-wrap justify-center gap-3 mt-10">
           <div className="bg-[#C8E6C9] px-5 py-3 rounded-full border-2 border-[#81C784]">
-            <span className="text-xs sm:text-sm font-semibold text-[#2E7D32]">📚 33条词条</span>
+            <span className="text-xs sm:text-sm font-semibold text-[#2E7D32]">📚 53条词条</span>
           </div>
           <div className="bg-[#FFE0B2] px-5 py-3 rounded-full border-2 border-[#FFB74D]">
             <span className="text-xs sm:text-sm font-semibold text-[#E65100]">🎵 语音朗读</span>

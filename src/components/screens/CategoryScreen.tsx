@@ -53,9 +53,9 @@ export function CategoryScreen({ onSelectCategory, onBack }: CategoryScreenProps
                   <div className="flex-1 min-w-0">
                     <h3 className="text-lg sm:text-xl font-bold text-[#5D4037]">{cat.name}</h3>
                     <p className="text-sm text-[#8D6E63] mt-2">
-                      {cat.id === 'blocks' && '13个方块'}
-                      {cat.id === 'animals' && '12种动物'}
-                      {cat.id === 'foods' && '8种食物'}
+                      {cat.id === 'blocks' && '26个方块'}
+                      {cat.id === 'animals' && '20种动物'}
+                      {cat.id === 'foods' && '13种食物'}
                     </p>
                   </div>
                 </div>
