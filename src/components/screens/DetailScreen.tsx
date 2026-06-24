@@ -12,9 +12,9 @@ interface DetailScreenProps {
 
 export function DetailScreen({ entry, onBack, onPrev, onNext, onImageClick }: DetailScreenProps) {
   return (
-    <div className="min-h-screen min-h-[100dvh] paper-bg flex flex-col">
+    <div className="min-h-screen min-h-[100dvh] paper-bg flex flex-col items-center">
       {/* 顶部导航 */}
-      <div className="sticky top-0 z-10 bg-[#FFF8E1]/90 backdrop-blur-sm border-b-2 border-[#D7CCC8] p-4">
+      <div className="sticky top-0 z-10 bg-[#FFF8E1]/90 backdrop-blur-sm border-b-2 border-[#D7CCC8] p-4 w-full">
         <div className="max-w-md mx-auto flex items-center justify-between">
           <button
             onClick={onBack}
@@ -30,7 +30,7 @@ export function DetailScreen({ entry, onBack, onPrev, onNext, onImageClick }: De
       </div>
 
       {/* 主内容区域 */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto w-full">
         <div className="max-w-md mx-auto p-4 space-y-5">
           {/* 图片区域 */}
           <div className="animate-pop">
@@ -49,8 +49,8 @@ export function DetailScreen({ entry, onBack, onPrev, onNext, onImageClick }: De
           </div>
 
           {/* 音频播放器 */}
-          <div>
-            <AudioPlayer entryId={entry.audio} />
+          <div className="flex justify-center">
+            <AudioPlayer entryId={entry.audio} className="w-full" />
           </div>
 
           {/* 描述文字 */}
@@ -90,16 +90,16 @@ export function DetailScreen({ entry, onBack, onPrev, onNext, onImageClick }: De
           </div>
 
           {/* 导航按钮 */}
-          <div className="flex gap-3 pb-4">
+          <div className="flex gap-3 pb-4 justify-center">
             <button
               onClick={onPrev}
-              className="flex-1 sketch-btn py-3 sm:py-4 text-sm sm:text-base font-bold text-[#5D4037] touch-target"
+              className="flex-1 max-w-[200px] sketch-btn py-3 sm:py-4 text-sm sm:text-base font-bold text-[#5D4037] touch-target"
             >
               ← 上一个
             </button>
             <button
               onClick={onNext}
-              className="flex-1 sketch-btn py-3 sm:py-4 text-sm sm:text-base font-bold text-[#5D4037] touch-target"
+              className="flex-1 max-w-[200px] sketch-btn py-3 sm:py-4 text-sm sm:text-base font-bold text-[#5D4037] touch-target"
             >
               下一个 →
             </button>
