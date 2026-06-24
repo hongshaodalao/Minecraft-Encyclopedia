@@ -1,95 +1,48 @@
-import { useState, useCallback } from 'react';
-import { CoverScreen } from './components/CoverScreen';
-import { CategoryScreen } from './components/CategoryScreen';
-import { EntryDetail } from './components/EntryDetail';
-import { ErrorBoundary } from './components/ErrorBoundary';
-import { useProgress } from './hooks/useProgress';
-import { getEntriesByCategory } from './data/utils';
-import type { Entry } from './schemas/entry.schema';
+import { useRouter } from './hooks/useRouter'
+import { useAudio } from './hooks/useAudio'
+import { CoverScreen } from './components/screens/CoverScreen'
+import { CategoryScreen } from './components/screens/CategoryScreen'
+import { DetailScreen } from './components/screens/DetailScreen'
+import { getEntriesByCategory } from './data/utils'
 
-type Screen =
-  | { type: 'cover' }
-  | { type: 'category' }
-  | { type: 'detail'; category: string; index: number };
-
-function AppContent() {
-  const [screen, setScreen] = useState<Screen>({ type: 'cover' });
-  const { markExplored } = useProgress();
-
-  const handleExplore = useCallback(() => {
-    setScreen({ type: 'category' });
-  }, []);
-
-  const handleSelectCategory = useCallback((categoryId: string) => {
-    setScreen({ type: 'detail', category: categoryId, index: 0 });
-  }, []);
-
-  const handleBackToCategories = useCallback(() => {
-    setScreen({ type: 'category' });
-  }, []);
-
-  const handleBackToCover = useCallback(() => {
-    setScreen({ type: 'cover' });
-  }, []);
+function App() {
+  const { screen, goToCover, goToCategory, goToDetail, goNext, goPrev } = useRouter()
+  const { play } = useAudio()
 
   if (screen.type === 'cover') {
-    return <CoverScreen onExplore={handleExplore} />;
+    return <CoverScreen onExplore={goToCategory} />
   }
 
   if (screen.type === 'category') {
     return (
       <CategoryScreen
-        onSelectCategory={handleSelectCategory}
-        onBack={handleBackToCover}
+        onSelectCategory={(categoryId) => goToDetail(categoryId, 0)}
+        onBack={goToCover}
       />
-    );
+    )
   }
 
   // detail
-  const entries = getEntriesByCategory(screen.category);
-  const entry: Entry | undefined = entries[screen.index];
+  const entries = getEntriesByCategory(screen.category!)
+  const entry = entries[screen.index ?? 0]
 
   if (!entry) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-sky">
-        <p className="text-xl text-brown-dark">找不到这个词条</p>
+      <div className="min-h-screen bg-[#87CEEB] flex items-center justify-center">
+        <p className="font-['Press_Start_2P'] text-[#3E2723]">找不到词条</p>
       </div>
-    );
+    )
   }
 
-  const handlePrev = () => {
-    setScreen((s) => {
-      if (s.type !== 'detail') return s;
-      const newIndex = s.index > 0 ? s.index - 1 : entries.length - 1;
-      return { ...s, index: newIndex };
-    });
-  };
-
-  const handleNext = () => {
-    setScreen((s) => {
-      if (s.type !== 'detail') return s;
-      const newIndex = s.index < entries.length - 1 ? s.index + 1 : 0;
-      return { ...s, index: newIndex };
-    });
-  };
-
   return (
-    <EntryDetail
-      key={entry.id}
+    <DetailScreen
       entry={entry}
-      onPrev={handlePrev}
-      onNext={handleNext}
-      onBackToCategories={handleBackToCategories}
-      onBackToCover={handleBackToCover}
-      markExplored={markExplored}
+      onBack={goToCategory}
+      onPrev={goPrev}
+      onNext={goNext}
+      onImageClick={() => play(entry.audio)}
     />
-  );
+  )
 }
 
-export default function App() {
-  return (
-    <ErrorBoundary>
-      <AppContent />
-    </ErrorBoundary>
-  );
-}
+export default App

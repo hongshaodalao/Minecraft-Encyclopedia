@@ -1,12 +1,8 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import App from '../../App';
 
 describe('App', () => {
-  beforeEach(() => {
-    localStorage.clear();
-  });
-
   it('应渲染首页封面', () => {
     render(<App />);
     expect(screen.getByText('我的世界百科全书')).toBeInTheDocument();
@@ -27,10 +23,5 @@ describe('App', () => {
     fireEvent.click(screen.getByText('开始探索'));
     fireEvent.click(screen.getByText('方块世界'));
     expect(screen.getByText('草方块')).toBeInTheDocument();
-  });
-
-  it('应显示已探索计数', () => {
-    render(<App />);
-    expect(screen.getByText('已探索 0/33 个')).toBeInTheDocument();
   });
 });
