@@ -1,32 +1,103 @@
-# React + TypeScript + Vite
+# 我的世界百科全书
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+面向 5 岁儿童的手绘绘本风格 Minecraft 语音图声音典。
 
-Currently, two official plugins are available:
+## 项目简介
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+这是一款专为儿童设计的互动百科应用，孩子可以通过点击听到语音朗读，配合手绘风格插画和互动音效，在玩耍中认识 Minecraft 的方块、动物和食物。
 
-## React Compiler
+### 核心特性
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🎵 **语音朗读**：每条词条都有语音讲解
+- 🎮 **互动音效**：点击插画播放对应音效
+- 📖 **手绘绘本风格**：温暖色调、圆角设计
+- 👶 **儿童友好**：大按钮、简单操作、防误触
 
-## Expanding the Oxlint configuration
+### 内容分类
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+| 分类 | 数量 | 内容 |
+|------|------|------|
+| 🧱 方块世界 | 26个 | 草方块、石头、钻石、熔炉、床... |
+| 🐮 可爱动物 | 20种 | 牛、羊、猫、熊猫、海豚... |
+| 🍎 好吃食物 | 13种 | 苹果、面包、蛋糕、蜂蜜... |
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+**共计 53 条词条**
+
+## 技术栈
+
+- **构建**：Vite
+- **框架**：React 18
+- **样式**：Tailwind CSS v4
+- **路由**：useState 状态机
+- **测试**：Vitest + Testing Library
+
+## 快速开始
+
+### 安装依赖
+
+```bash
+npm install
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+### 启动开发服务器
+
+```bash
+npm run dev
+```
+
+访问 http://localhost:5173 查看效果。
+
+### 构建生产版本
+
+```bash
+npm run build
+```
+
+### 运行测试
+
+```bash
+npm test
+```
+
+## 项目结构
+
+```
+├── public/
+│   ├── audio/          # 语音文件（.m4a）
+│   ├── sounds/         # 音效文件（.ogg）
+│   └── svg/            # 图片文件（.png）
+├── src/
+│   ├── components/     # 组件
+│   │   ├── screens/    # 页面组件
+│   │   └── features/   # 功能组件
+│   ├── hooks/          # 自定义 Hook
+│   ├── data/           # 数据文件
+│   └── types/          # 类型定义
+├── docs/               # 文档
+└── scripts/            # 工具脚本
+```
+
+## 添加内容
+
+1. 在 `src/data/entries.json` 中添加词条数据
+2. 将图片放入 `public/svg/` 目录
+3. 将音效放入 `public/sounds/` 目录
+4. 将语音放入 `public/audio/` 目录
+
+无需修改代码，数据驱动自动加载。
+
+## 页面流程
+
+```
+首页 → 分类选择 → 词条列表 → 词条详情
+```
+
+## 设计风格
+
+- **手绘绘本风格**：温暖色调、圆角、柔和阴影
+- **字体**：Nunito（圆润可爱）
+- **配色**：米白背景、棕色文字、绿色强调
+
+## 许可证
+
+个人学习项目，非商业用途。
