@@ -2,11 +2,12 @@ import { useRouter } from './hooks/useRouter'
 import { useAudio } from './hooks/useAudio'
 import { CoverScreen } from './components/screens/CoverScreen'
 import { CategoryScreen } from './components/screens/CategoryScreen'
+import { EntryListScreen } from './components/screens/EntryListScreen'
 import { DetailScreen } from './components/screens/DetailScreen'
 import { getEntriesByCategory } from './data/utils'
 
 function App() {
-  const { screen, goToCover, goToCategory, goToDetail, goNext, goPrev } = useRouter()
+  const { screen, goToCover, goToCategory, goToList, goToDetail, goNext, goPrev } = useRouter()
   const { play } = useAudio()
 
   if (screen.type === 'cover') {
@@ -16,8 +17,18 @@ function App() {
   if (screen.type === 'category') {
     return (
       <CategoryScreen
-        onSelectCategory={(categoryId) => goToDetail(categoryId, 0)}
+        onSelectCategory={(categoryId) => goToList(categoryId)}
         onBack={goToCover}
+      />
+    )
+  }
+
+  if (screen.type === 'list') {
+    return (
+      <EntryListScreen
+        categoryId={screen.category!}
+        onSelectEntry={(index) => goToDetail(screen.category!, index)}
+        onBack={goToCategory}
       />
     )
   }
@@ -40,7 +51,7 @@ function App() {
   return (
     <DetailScreen
       entry={entry}
-      onBack={goToCategory}
+      onBack={() => goToList(screen.category!)}
       onPrev={goPrev}
       onNext={goNext}
       onImageClick={() => play(entry.audio)}

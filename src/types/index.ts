@@ -18,7 +18,7 @@ export interface Category {
   color: string
 }
 
-export type ScreenType = 'cover' | 'category' | 'detail'
+export type ScreenType = 'cover' | 'category' | 'list' | 'detail'
 
 export interface ScreenState {
   type: ScreenType

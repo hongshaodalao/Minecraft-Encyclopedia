@@ -13,6 +13,10 @@ export function useRouter() {
     setScreen({ type: 'category' })
   }, [])
 
+  const goToList = useCallback((categoryId: string) => {
+    setScreen({ type: 'list', category: categoryId })
+  }, [])
+
   const goToDetail = useCallback((categoryId: string, index: number = 0) => {
     setScreen({ type: 'detail', category: categoryId, index })
   }, [])
@@ -41,5 +45,5 @@ export function useRouter() {
     })
   }, [])
 
-  return { screen, goToCover, goToCategory, goToDetail, goNext, goPrev }
+  return { screen, goToCover, goToCategory, goToList, goToDetail, goNext, goPrev }
 }
