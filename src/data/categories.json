@@ -1,0 +1,5 @@
+[
+  { "id": "blocks", "name": "方块世界", "icon": "🟫", "color": "#8D6E63" },
+  { "id": "animals", "name": "可爱动物", "icon": "🐮", "color": "#FF8A65" },
+  { "id": "foods", "name": "好吃食物", "icon": "🍎", "color": "#EF5350" }
+]

@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@theme {
+  --color-sky: #87CEEB;
+  --color-cream: #FFF8DC;
+  --color-yellow-bright: #FFD93D;
+  --color-pink: #FF6B9D;
+  --color-green-grass: #7CB342;
+  --color-brown-dark: #3E2723;
+  --color-brown-block: #8D6E63;
+  --color-orange-animal: #FF8A65;
+  --color-red-food: #EF5350;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overscroll-behavior: none;
+}
+
+body {
+  font-family: '站酷快乐体', '霞鹜文楷', system-ui, sans-serif;
+  background-color: #87CEEB;
+  color: #3E2723;
+  -webkit-text-size-adjust: 100%;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+@keyframes pulse-breath {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+@keyframes bounce-in {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); }
+  70% { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px) rotate(-3deg); }
+  75% { transform: translateX(5px) rotate(3deg); }
+}
+
+@keyframes confetti-fall {
+  0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+.animate-pulse-breath {
+  animation: pulse-breath 2s ease-in-out infinite;
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.5s ease-out;
+}
+
+.animate-shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+.touch-target {
+  min-width: 80px;
+  min-height: 80px;
+}
