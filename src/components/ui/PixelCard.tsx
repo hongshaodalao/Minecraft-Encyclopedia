@@ -1,4 +1,3 @@
-import React from 'react'
 import { PixelBorder } from './PixelBorder'
 
 interface PixelCardProps {
@@ -11,7 +10,7 @@ export function PixelCard({ children, onClick, className = '' }: PixelCardProps)
   return (
     <div
       onClick={onClick}
-      className={`cursor-pointer hover:translate-y-[-2px] transition-transform duration-100 ${className}`}
+      className={`cursor-pointer transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 ${className}`}
     >
       <PixelBorder>
         <div className="p-4 bg-white">

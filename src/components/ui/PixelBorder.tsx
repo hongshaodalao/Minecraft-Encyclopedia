@@ -1,5 +1,3 @@
-import React from 'react'
-
 interface PixelBorderProps {
   children: React.ReactNode
   className?: string
@@ -7,7 +5,7 @@ interface PixelBorderProps {
 
 export function PixelBorder({ children, className = '' }: PixelBorderProps) {
   return (
-    <div className={`border-4 border-[#3E2723] shadow-[4px_4px_0px_0px_rgba(62,39,35,1)] ${className}`}>
+    <div className={`border-4 border-[#3E2723] shadow-[6px_6px_0px_0px_rgba(0,0,0,0.4)] ${className}`}>
       {children}
     </div>
   )
