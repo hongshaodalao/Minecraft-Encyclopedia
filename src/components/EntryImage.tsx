@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { imagePath } from '../utils/assetPath';
 
 interface EntryImageProps {
   imageId: string;
@@ -30,7 +31,7 @@ export function EntryImage({ imageId, category, alt, onClick, className = '' }: 
     >
       {!failed ? (
         <img
-          src={`/images/${category}/${imageId}.webp`}
+          src={imagePath(category, imageId)}
           alt={alt}
           className="w-full h-full object-contain"
           onError={() => setFailed(true)}

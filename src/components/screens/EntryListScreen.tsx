@@ -1,4 +1,5 @@
 import { getEntriesByCategory, getCategoryById } from '../../data/utils'
+import { imagePath } from '../../utils/assetPath'
 import type { Entry } from '../../types'
 
 interface EntryListScreenProps {
@@ -81,7 +82,7 @@ function EntryCard({ entry, index, onClick }: EntryCardProps) {
         {/* 图片 */}
         <div className="aspect-square bg-gradient-to-b from-[#E8F5E9] to-[#C8E6C9] p-3 flex items-center justify-center">
           <img
-            src={`/images/${entry.category}/${entry.image}.webp`}
+            src={imagePath(entry.category, entry.image)}
             alt={entry.name}
             className="w-full h-full object-contain"
             onError={(e) => {

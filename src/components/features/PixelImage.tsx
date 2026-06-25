@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { imagePath } from '../../utils/assetPath'
 
 interface PixelImageProps {
   imageId: string
@@ -28,7 +29,7 @@ export function PixelImage({ imageId, category, alt, onClick, className = '' }: 
       <div className={`transition-transform duration-200 ${clicking ? 'scale-95' : ''}`}>
         {!failed ? (
           <img
-            src={`/images/${category}/${imageId}.webp`}
+            src={imagePath(category, imageId)}
             alt={alt}
             className="w-full h-full object-contain max-h-[280px] rounded-xl"
             onError={() => setFailed(true)}
