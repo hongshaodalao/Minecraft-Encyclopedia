@@ -36,10 +36,10 @@ for (const entry of entries) {
     errors.push(`${prefix} 音频文件不存在: public/audio/${entry.audio}.opus 或 .m4a`);
   }
 
-  // 图片文件存在（PNG格式）
-  const imgPath = resolve(root, 'public/svg', `${entry.image}.png`);
+  // 图片文件存在（WebP格式，按分类存放）
+  const imgPath = resolve(root, 'public/images', entry.category, `${entry.image}.webp`);
   if (!existsSync(imgPath)) {
-    errors.push(`${prefix} 图片文件不存在: public/svg/${entry.image}.png`);
+    errors.push(`${prefix} 图片文件不存在: public/images/${entry.category}/${entry.image}.webp`);
   }
 
   // 音效文件存在（OGG格式）

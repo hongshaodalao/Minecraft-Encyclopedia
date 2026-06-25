@@ -5,52 +5,52 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
-const svgDir = resolve(root, 'public/svg');
+const imagesDir = resolve(root, 'public/images');
 const soundsDir = resolve(root, 'public/sounds');
 
-mkdirSync(svgDir, { recursive: true });
+mkdirSync(imagesDir, { recursive: true });
 mkdirSync(soundsDir, { recursive: true });
 
 const API = 'https://minecraft.wiki/api.php';
 
-// 资源映射: id -> wiki文件名
+// 资源映射: id -> [wiki文件名, 分类]
 const IMAGE_MAP = {
   // 方块世界
-  grass: 'Grass_Block_JE2.png',
-  dirt: 'Dirt_JE3.png',
-  wood: 'Oak_Log_JE3.png',
-  stone: 'Stone_JE2.png',
-  sand: 'Sand_JE3.png',
-  water: 'Water_JE3.png',
-  lava: 'Lava_JE3.png',
-  coal: 'Coal_Ore_JE3.png',
-  iron: 'Iron_Ore_JE4.png',
-  gold: 'Gold_Ore_JE4.png',
-  diamond: 'Diamond_Ore_JE3.png',
-  redstone: 'Redstone_Ore_JE4.png',
-  glass: 'Glass_JE2.png',
+  grass: ['Grass_Block_JE2.png', 'blocks'],
+  dirt: ['Dirt_JE3.png', 'blocks'],
+  wood: ['Oak_Log_JE3.png', 'blocks'],
+  stone: ['Stone_JE2.png', 'blocks'],
+  sand: ['Sand_JE3.png', 'blocks'],
+  water: ['Water_JE3.png', 'blocks'],
+  lava: ['Lava_JE3.png', 'blocks'],
+  coal: ['Coal_Ore_JE3.png', 'blocks'],
+  iron: ['Iron_Ore_JE4.png', 'blocks'],
+  gold: ['Gold_Ore_JE4.png', 'blocks'],
+  diamond: ['Diamond_Ore_JE3.png', 'blocks'],
+  redstone: ['Redstone_Ore_JE4.png', 'blocks'],
+  glass: ['Glass_JE2.png', 'blocks'],
   // 可爱动物
-  cow: 'Cow_JE9.png',
-  sheep: 'Sheep_JE5.png',
-  pig: 'Pig_JE5.png',
-  chicken: 'Chicken_JE5.png',
-  horse: 'Horse_JE5.png',
-  wolf: 'Wolf_JE4.png',
-  cat: 'Cat_JE2.png',
-  rabbit: 'Rabbit_JE4.png',
-  llama: 'Llama_JE2.png',
-  bee: 'Bee_JE2.png',
-  turtle: 'Turtle_JE2.png',
-  creeper: 'Creeper_JE5.png',
+  cow: ['Cow_JE9.png', 'animals'],
+  sheep: ['Sheep_JE5.png', 'animals'],
+  pig: ['Pig_JE5.png', 'animals'],
+  chicken: ['Chicken_JE5.png', 'animals'],
+  horse: ['Horse_JE5.png', 'animals'],
+  wolf: ['Wolf_JE4.png', 'animals'],
+  cat: ['Cat_JE2.png', 'animals'],
+  rabbit: ['Rabbit_JE4.png', 'animals'],
+  llama: ['Llama_JE2.png', 'animals'],
+  bee: ['Bee_JE2.png', 'animals'],
+  turtle: ['Turtle_JE2.png', 'animals'],
+  creeper: ['Creeper_JE5.png', 'animals'],
   // 好吃食物
-  apple: 'Apple_JE3.png',
-  bread: 'Bread_JE3.png',
-  carrot: 'Carrot_JE3.png',
-  potato: 'Potato_JE3.png',
-  wheat: 'Wheat_JE3.png',
-  berries: 'Sweet_Berries_JE2.png',
-  cake: 'Cake_JE2.png',
-  milk: 'Milk_Bucket_JE2.png',
+  apple: ['Apple_JE3.png', 'foods'],
+  bread: ['Bread_JE3.png', 'foods'],
+  carrot: ['Carrot_JE3.png', 'foods'],
+  potato: ['Potato_JE3.png', 'foods'],
+  wheat: ['Wheat_JE3.png', 'foods'],
+  berries: ['Sweet_Berries_JE2.png', 'foods'],
+  cake: ['Cake_JE2.png', 'foods'],
+  milk: ['Milk_Bucket_JE2.png', 'foods'],
 };
 
 // 搜索并获取图片URL
@@ -98,8 +98,10 @@ async function downloadImage(url, destPath) {
 }
 
 // 处理单个资源
-async function processAsset(id, wikiFilename) {
-  const destPath = resolve(svgDir, `${id}.png`);
+async function processAsset(id, wikiFilename, category) {
+  const catDir = resolve(imagesDir, category);
+  mkdirSync(catDir, { recursive: true });
+  const destPath = resolve(catDir, `${id}.png`);
 
   // 如果已有真正的PNG文件，跳过
   if (existsSync(destPath)) {
@@ -145,8 +147,8 @@ async function main() {
   const entries = Object.entries(IMAGE_MAP);
   const results = [];
 
-  for (const [id, filename] of entries) {
-    const result = await processAsset(id, filename);
+  for (const [id, [filename, category]] of entries) {
+    const result = await processAsset(id, filename, category);
     results.push(result);
     // 避免请求过快
     await new Promise(r => setTimeout(r, 500));

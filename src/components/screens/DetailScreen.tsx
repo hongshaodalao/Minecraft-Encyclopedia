@@ -39,6 +39,7 @@ export function DetailScreen({ entry, onBack, onPrev, onNext, onImageClick }: De
                 <div className="bg-gradient-to-b from-[#E8F5E9] to-[#C8E6C9] rounded-xl p-4 sm:p-5">
                   <PixelImage
                     imageId={entry.image}
+                    category={entry.category}
                     alt={entry.name}
                     onClick={onImageClick}
                   />

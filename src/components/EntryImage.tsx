@@ -2,12 +2,13 @@ import { useState } from 'react';
 
 interface EntryImageProps {
   imageId: string;
+  category: string;
   alt: string;
   onClick?: () => void;
   className?: string;
 }
 
-export function EntryImage({ imageId, alt, onClick, className = '' }: EntryImageProps) {
+export function EntryImage({ imageId, category, alt, onClick, className = '' }: EntryImageProps) {
   const [failed, setFailed] = useState(false);
   const [shaking, setShaking] = useState(false);
 
@@ -29,7 +30,7 @@ export function EntryImage({ imageId, alt, onClick, className = '' }: EntryImage
     >
       {!failed ? (
         <img
-          src={`/svg/${imageId}.png`}
+          src={`/images/${category}/${imageId}.webp`}
           alt={alt}
           className="w-full h-full object-contain"
           onError={() => setFailed(true)}

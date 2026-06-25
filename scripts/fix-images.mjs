@@ -7,24 +7,24 @@ const root = resolve(__dirname, '..');
 
 const API = 'https://minecraft.wiki/api.php';
 
-// 需要重新下载的图片（小尺寸或模糊的）
+// 需要重新下载的图片（小尺寸或模糊的）: id -> [候选文件名列表, 分类]
 const IMAGE_MAP = {
   // 16x16 需要重新下载
-  carrot: ['Carrot_(item)_JE4.png', 'Carrot_JE4.png', 'Carrot_(item).png'],
-  cat: ['Cat_JE2.png', 'Cat_(orange)_JE2.png', 'Cat.png'],
-  chicken: ['Chicken_JE5.png', 'Chicken_JE4.png', 'Chicken.png'],
-  creeper: ['Creeper_JE5.png', 'Creeper_JE4.png', 'Creeper.png'],
-  llama: ['Llama_JE2.png', 'Llama_(creamy)_JE2.png', 'Llama.png'],
-  sheep: ['Sheep_JE5.png', 'Sheep_(white)_JE5.png', 'Sheep.png'],
-  wheat: ['Wheat_JE3.png', 'Wheat_JE2.png', 'Wheat.png'],
-  wolf: ['Wolf_JE4.png', 'Wolf_(tamed)_JE4.png', 'Wolf.png'],
+  carrot: [['Carrot_(item)_JE4.png', 'Carrot_JE4.png', 'Carrot_(item).png'], 'foods'],
+  cat: [['Cat_JE2.png', 'Cat_(orange)_JE2.png', 'Cat.png'], 'animals'],
+  chicken: [['Chicken_JE5.png', 'Chicken_JE4.png', 'Chicken.png'], 'animals'],
+  creeper: [['Creeper_JE5.png', 'Creeper_JE4.png', 'Creeper.png'], 'animals'],
+  llama: [['Llama_JE2.png', 'Llama_(creamy)_JE2.png', 'Llama.png'], 'animals'],
+  sheep: [['Sheep_JE5.png', 'Sheep_(white)_JE5.png', 'Sheep.png'], 'animals'],
+  wheat: [['Wheat_JE3.png', 'Wheat_JE2.png', 'Wheat.png'], 'foods'],
+  wolf: [['Wolf_JE4.png', 'Wolf_(tamed)_JE4.png', 'Wolf.png'], 'animals'],
   // 160x160 也重新下载
-  apple: ['Apple_JE3.png', 'Apple_JE2.png', 'Apple.png'],
-  berries: ['Sweet_Berries_JE2.png', 'Sweet_Berries_JE1.png', 'Sweet_Berries.png'],
-  bread: ['Bread_JE3.png', 'Bread_JE2.png', 'Bread.png'],
-  horse: ['Horse_JE5.png', 'Horse_(brown)_JE5.png', 'Horse.png'],
-  milk: ['Milk_Bucket_JE2.png', 'Milk_Bucket_JE1.png', 'Milk_Bucket.png'],
-  potato: ['Potato_JE3.png', 'Potato_JE2.png', 'Potato.png'],
+  apple: [['Apple_JE3.png', 'Apple_JE2.png', 'Apple.png'], 'foods'],
+  berries: [['Sweet_Berries_JE2.png', 'Sweet_Berries_JE1.png', 'Sweet_Berries.png'], 'foods'],
+  bread: [['Bread_JE3.png', 'Bread_JE2.png', 'Bread.png'], 'foods'],
+  horse: [['Horse_JE5.png', 'Horse_(brown)_JE5.png', 'Horse.png'], 'animals'],
+  milk: [['Milk_Bucket_JE2.png', 'Milk_Bucket_JE1.png', 'Milk_Bucket.png'], 'foods'],
+  potato: [['Potato_JE3.png', 'Potato_JE2.png', 'Potato.png'], 'foods'],
 };
 
 // 搜索图片URL
@@ -72,8 +72,11 @@ async function downloadImage(url, destPath) {
 }
 
 // 处理单个图片
-async function processImage(id, candidates) {
-  const destPath = resolve(root, 'public/svg', `${id}.png`);
+async function processImage(id, candidates, category) {
+  const catDir = resolve(root, 'public/images', category);
+  const { mkdirSync } = await import('node:fs');
+  mkdirSync(catDir, { recursive: true });
+  const destPath = resolve(catDir, `${id}.png`);
 
   for (const filename of candidates) {
     try {
@@ -123,9 +126,9 @@ async function main() {
   let success = 0;
   let failed = 0;
 
-  for (const [id, candidates] of Object.entries(IMAGE_MAP)) {
+  for (const [id, [candidates, category]] of Object.entries(IMAGE_MAP)) {
     console.log(`\n处理 ${id}:`);
-    const result = await processImage(id, candidates);
+    const result = await processImage(id, candidates, category);
     if (result) success++;
     else failed++;
     await new Promise(r => setTimeout(r, 500));

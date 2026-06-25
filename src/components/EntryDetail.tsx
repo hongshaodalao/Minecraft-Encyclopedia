@@ -52,6 +52,7 @@ export function EntryDetail({
         <InteractionLayer soundId={entry.sound} isNarrating={isNarrating}>
           <EntryImage
             imageId={entry.image}
+            category={entry.category}
             alt={entry.name}
             className="w-full max-w-[300px] aspect-square"
           />

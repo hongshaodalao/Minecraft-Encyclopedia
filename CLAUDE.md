@@ -40,7 +40,8 @@ type Screen =
 - `src/data/entries.json`：53 条词条的核心数据源
 - `src/data/categories.json`：三大分类（方块世界/可爱动物/好吃食物）
 - `src/schemas/entry.schema.ts`：Zod schema 定义数据结构，`data/utils.ts` 加载时自动校验
-- 图片/音效/语音均通过 JSON 字段动态拼接路径加载
+- 图片（WebP）按分类存放：`public/images/{blocks|animals|foods}/{id}.webp`
+- 音效（OGG）：`public/sounds/{id}.ogg`，语音（m4a/opus）：`public/audio/{id}`
 - **加内容 = 改 JSON + 往 public 目录加文件**，代码无需改动
 - 改完后运行 `npm run validate-data` 校验数据格式
 

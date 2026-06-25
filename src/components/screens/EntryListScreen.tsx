@@ -81,7 +81,7 @@ function EntryCard({ entry, index, onClick }: EntryCardProps) {
         {/* 图片 */}
         <div className="aspect-square bg-gradient-to-b from-[#E8F5E9] to-[#C8E6C9] p-3 flex items-center justify-center">
           <img
-            src={`/svg/${entry.image}.png`}
+            src={`/images/${entry.category}/${entry.image}.webp`}
             alt={entry.name}
             className="w-full h-full object-contain"
             onError={(e) => {
