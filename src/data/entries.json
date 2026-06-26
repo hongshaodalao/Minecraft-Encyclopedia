@@ -223,7 +223,7 @@
   {
     "id": "glass",
     "name": "玻璃",
-    "category": "blocks",
+    "category": "items",
     "image": "glass",
     "audio": "glass",
     "sound": "glass",
@@ -236,7 +236,7 @@
   {
     "id": "torch",
     "name": "火把",
-    "category": "blocks",
+    "category": "items",
     "image": "torch",
     "audio": "torch",
     "sound": "grass",
@@ -249,7 +249,7 @@
   {
     "id": "furnace",
     "name": "熔炉",
-    "category": "blocks",
+    "category": "items",
     "image": "furnace",
     "audio": "furnace",
     "sound": "stone",
@@ -262,7 +262,7 @@
   {
     "id": "chest",
     "name": "箱子",
-    "category": "blocks",
+    "category": "items",
     "image": "chest",
     "audio": "chest",
     "sound": "wood",
@@ -275,7 +275,7 @@
   {
     "id": "bed",
     "name": "床",
-    "category": "blocks",
+    "category": "items",
     "image": "bed",
     "audio": "bed",
     "sound": "wood",
@@ -288,7 +288,7 @@
   {
     "id": "door",
     "name": "门",
-    "category": "blocks",
+    "category": "items",
     "image": "door",
     "audio": "door",
     "sound": "wood",
@@ -301,7 +301,7 @@
   {
     "id": "tnt",
     "name": "TNT",
-    "category": "blocks",
+    "category": "items",
     "image": "tnt",
     "audio": "tnt",
     "sound": "lava",
@@ -314,7 +314,7 @@
   {
     "id": "bookshelf",
     "name": "书架",
-    "category": "blocks",
+    "category": "items",
     "image": "bookshelf",
     "audio": "bookshelf",
     "sound": "wood",
@@ -327,7 +327,7 @@
   {
     "id": "brick",
     "name": "砖块",
-    "category": "blocks",
+    "category": "items",
     "image": "brick",
     "audio": "brick",
     "sound": "stone",
@@ -340,7 +340,7 @@
   {
     "id": "pumpkin",
     "name": "南瓜",
-    "category": "blocks",
+    "category": "items",
     "image": "pumpkin",
     "audio": "pumpkin",
     "sound": "grass",
@@ -353,7 +353,7 @@
   {
     "id": "cactus",
     "name": "仙人掌",
-    "category": "blocks",
+    "category": "items",
     "image": "cactus",
     "audio": "cactus",
     "sound": "grass",
@@ -405,7 +405,7 @@
   {
     "id": "planks",
     "name": "木板",
-    "category": "blocks",
+    "category": "items",
     "image": "planks",
     "audio": "wood",
     "sound": "wood",
@@ -418,7 +418,7 @@
   {
     "id": "wool",
     "name": "羊毛",
-    "category": "blocks",
+    "category": "items",
     "image": "wool",
     "audio": "grass",
     "sound": "grass",
@@ -626,7 +626,7 @@
   {
     "id": "bucket",
     "name": "铁桶",
-    "category": "items",
+    "category": "equipment",
     "image": "bucket",
     "audio": "iron",
     "sound": "iron",
@@ -639,7 +639,7 @@
   {
     "id": "compass",
     "name": "指南针",
-    "category": "items",
+    "category": "equipment",
     "image": "compass",
     "audio": "redstone",
     "sound": "redstone",
@@ -652,7 +652,7 @@
   {
     "id": "clock",
     "name": "时钟",
-    "category": "items",
+    "category": "equipment",
     "image": "clock",
     "audio": "gold",
     "sound": "gold",
@@ -665,7 +665,7 @@
   {
     "id": "map",
     "name": "地图",
-    "category": "items",
+    "category": "equipment",
     "image": "map",
     "audio": "paper",
     "sound": "grass",
@@ -678,7 +678,7 @@
   {
     "id": "lead",
     "name": "拴绳",
-    "category": "items",
+    "category": "equipment",
     "image": "lead",
     "audio": "grass",
     "sound": "grass",
@@ -691,7 +691,7 @@
   {
     "id": "name_tag",
     "name": "命名牌",
-    "category": "items",
+    "category": "equipment",
     "image": "name_tag",
     "audio": "grass",
     "sound": "grass",
