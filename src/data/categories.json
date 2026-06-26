@@ -1,5 +1,7 @@
 [
-  { "id": "blocks", "name": "方块世界", "icon": "🟫", "color": "#8D6E63" },
-  { "id": "animals", "name": "可爱动物", "icon": "🐮", "color": "#FF8A65" },
-  { "id": "foods", "name": "好吃食物", "icon": "🍎", "color": "#EF5350" }
+  { "id": "blocks", "name": "方块", "icon": "🟫", "color": "#8D6E63" },
+  { "id": "items", "name": "物品", "icon": "🎒", "color": "#FFA726" },
+  { "id": "equipment", "name": "装备", "icon": "⚔️", "color": "#42A5F5" },
+  { "id": "monsters", "name": "怪物", "icon": "💀", "color": "#AB47BC" },
+  { "id": "animals", "name": "动物", "icon": "🐮", "color": "#66BB6A" }
 ]

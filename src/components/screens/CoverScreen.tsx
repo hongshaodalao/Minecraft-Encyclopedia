@@ -1,3 +1,5 @@
+import { TOTAL_ENTRIES } from '../../data/utils'
+
 interface CoverScreenProps {
   onExplore: () => void
 }
@@ -31,7 +33,7 @@ export function CoverScreen({ onExplore }: CoverScreenProps) {
         {/* 副标题 */}
         <div className="bg-white/80 px-8 py-4 rounded-xl border-2 border-[#D7CCC8] shadow-sm mb-12 text-center">
           <p className="text-base sm:text-lg text-[#8D6E63] font-semibold">
-            🎵 听一听，看一看，认识方块世界！
+            🎵 听一听，看一看，认识我的世界！
           </p>
         </div>
 
@@ -46,7 +48,7 @@ export function CoverScreen({ onExplore }: CoverScreenProps) {
         {/* 特性标签 */}
         <div className="flex flex-wrap justify-center gap-3 mt-10">
           <div className="bg-[#C8E6C9] px-5 py-3 rounded-full border-2 border-[#81C784]">
-            <span className="text-xs sm:text-sm font-semibold text-[#2E7D32]">📚 53条词条</span>
+            <span className="text-xs sm:text-sm font-semibold text-[#2E7D32]">📚 {TOTAL_ENTRIES}条词条</span>
           </div>
           <div className="bg-[#FFE0B2] px-5 py-3 rounded-full border-2 border-[#FFB74D]">
             <span className="text-xs sm:text-sm font-semibold text-[#E65100]">🎵 语音朗读</span>

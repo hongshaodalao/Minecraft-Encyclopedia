@@ -1,20 +1,16 @@
-import { allCategories } from '../../data/utils'
+import { allCategories, getEntriesByCategory } from '../../data/utils'
 
 interface CategoryScreenProps {
   onSelectCategory: (categoryId: string) => void
   onBack: () => void
 }
 
-const categoryIcons: Record<string, string> = {
-  blocks: '🧱',
-  animals: '🐮',
-  foods: '🍎',
-}
-
 const categoryDescs: Record<string, string> = {
   blocks: '认识MC世界的基础方块，草方块、石头、钻石...',
-  animals: '可爱的动物朋友们，牛、羊、苦力怕...',
-  foods: '好吃的食物，苹果、面包、蛋糕...',
+  items: '好吃的食物和实用的道具，苹果、面包、铁桶...',
+  equipment: '武器、工具和盔甲，剑、镐子、钻石甲...',
+  monsters: '可怕的怪物们，僵尸、骷髅、苦力怕...',
+  animals: '可爱的动物朋友们，牛、羊、熊猫...',
 }
 
 export function CategoryScreen({ onSelectCategory, onBack }: CategoryScreenProps) {
@@ -48,14 +44,12 @@ export function CategoryScreen({ onSelectCategory, onBack }: CategoryScreenProps
                 {/* 分类头部 */}
                 <div className="p-5 sm:p-6 flex items-center gap-4" style={{backgroundColor: cat.color + '20'}}>
                   <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-xl border-3 border-[#8D6E63] shadow-sm flex items-center justify-center bg-white/50 flex-shrink-0">
-                    <span className="text-4xl sm:text-5xl">{categoryIcons[cat.id] || cat.icon}</span>
+                    <span className="text-4xl sm:text-5xl">{cat.icon}</span>
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="text-lg sm:text-xl font-bold text-[#5D4037]">{cat.name}</h3>
                     <p className="text-sm text-[#8D6E63] mt-2">
-                      {cat.id === 'blocks' && '26个方块'}
-                      {cat.id === 'animals' && '20种动物'}
-                      {cat.id === 'foods' && '13种食物'}
+                      {getEntriesByCategory(cat.id).length} 个词条
                     </p>
                   </div>
                 </div>

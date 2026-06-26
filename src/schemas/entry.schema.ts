@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const CATEGORIES = ['blocks', 'animals', 'foods'] as const;
+const CATEGORIES = ['blocks', 'items', 'equipment', 'monsters', 'animals'] as const;
 
 export const EntrySchema = z.object({
   id: z.string().min(1),
