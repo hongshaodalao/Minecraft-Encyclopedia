@@ -38,12 +38,12 @@ type Screen =
 ### 数据驱动
 
 - `src/data/entries.json`：108 条词条的核心数据源
-- `src/data/categories.json`：三大分类（方块世界/可爱动物/好吃食物）
+- `src/data/categories.json`：五大分类（blocks/items/equipment/monsters/animals）
 - `src/schemas/entry.schema.ts`：Zod schema 定义数据结构，`data/utils.ts` 加载时自动校验
-- 图片（WebP）按分类存放：`public/images/{blocks|animals|foods}/{id}.webp`
+- 图片（WebP）按分类存放：`public/images/{blocks|items|equipment|monsters|animals}/{id}.webp`
 - 音效（OGG）：`public/sounds/{id}.ogg`，语音（m4a/opus）：`public/audio/{id}`
 - **加内容 = 改 JSON + 往 public 目录加文件**，代码无需改动
-- 改完后运行 `npm run validate-data` 校验数据格式
+- 改完后运行 `npm run validate-data` 校验数据格式（检查文件存在性、audioDuration 10-40秒范围）
 
 ### 文件结构
 
@@ -69,7 +69,7 @@ src/
 │   ├── useRouter.ts           # 页面路由逻辑
 │   └── useProgress.ts         # 学习进度追踪
 ├── data/
-│   ├── entries.json           # 词条数据（53条）
+│   ├── entries.json           # 词条数据（108条）
 │   ├── categories.json        # 分类数据
 │   └── utils.ts               # 数据查询工具函数
 ├── schemas/
@@ -79,6 +79,8 @@ src/
 ```
 
 **类型系统注意**：项目同时存在两套类型——`types/index.ts`（手写接口）和 `schemas/entry.schema.ts`（Zod 推导类型）。`data/utils.ts` 使用 Zod schema 做运行时校验，组件中使用手写类型。新增字段时两边都要更新。
+
+**已知差异**：`types/index.ts` 缺少 `audioDuration` 字段，但 Zod schema 和 `entries.json` 中已有该字段（范围 10-40 秒）。
 
 ### 视觉风格
 
@@ -116,6 +118,8 @@ npm run preview        # 预览生产构建
 **测试**：使用 Vitest + Testing Library，测试文件放在 `__tests__/` 目录下。运行单个测试：`npx vitest run <文件路径>`
 
 **Lint**：使用 oxlint（非 ESLint），配置文件 `.oxlintrc.json`，已启用 React/TypeScript 插件。
+
+**部署**：GitHub Pages 自动部署，push 到 `master` 分支触发。`vite.config.ts` 中 `base: '/Minecraft-Encyclopedia/'` 是部署路径前缀。
 
 ## 内容分类（5类，共108条）
 
