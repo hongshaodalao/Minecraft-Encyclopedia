@@ -125,8 +125,8 @@ async function processEntry(id, candidates, category) {
   const sharp = (await import('sharp')).default;
   const dstPath = resolve(root, 'public/images', category, `${id}.webp`);
 
-  // 如果已有大于3KB的真实图片，跳过
-  if (existsSync(dstPath) && statSync(dstPath).size > 3000) {
+  // 如果已有大于10KB的真实图片（300x300分辨率），跳过
+  if (existsSync(dstPath) && statSync(dstPath).size > 10000) {
     return 'skip';
   }
 
@@ -138,8 +138,8 @@ async function processEntry(id, candidates, category) {
       if (info.width < 32 || info.height < 32) continue;
 
       const buf = await downloadImage(info.url);
-      await sharp(buf).resize(128, 128, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
-        .webp({ quality: 85 }).toFile(dstPath);
+      await sharp(buf).resize(300, 300, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+        .webp({ quality: 90 }).toFile(dstPath);
       return 'ok';
     } catch { }
   }
@@ -153,8 +153,8 @@ async function processEntry(id, candidates, category) {
         const info = await getImageUrl(name);
         if (!info || !info.url || info.width < 32) continue;
         const buf = await downloadImage(info.url);
-        await sharp(buf).resize(128, 128, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
-          .webp({ quality: 85 }).toFile(dstPath);
+        await sharp(buf).resize(300, 300, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+          .webp({ quality: 90 }).toFile(dstPath);
         return 'ok';
       } catch { }
     }
