@@ -1537,7 +1537,7 @@
   {
     "id": "glass_pane",
     "name": "玻璃板",
-    "category": "blocks",
+    "category": "items",
     "image": "glass_pane",
     "audio": "glass",
     "sound": "glass",
@@ -1550,7 +1550,7 @@
   {
     "id": "iron_bars",
     "name": "铁栏杆",
-    "category": "blocks",
+    "category": "items",
     "image": "iron_bars",
     "audio": "iron",
     "sound": "iron",
@@ -1589,7 +1589,7 @@
   {
     "id": "mushroom",
     "name": "蘑菇",
-    "category": "blocks",
+    "category": "items",
     "image": "mushroom",
     "audio": "grass",
     "sound": "grass",
