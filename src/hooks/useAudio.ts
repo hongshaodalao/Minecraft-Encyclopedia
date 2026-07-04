@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 
-const AUDIO_EXT = new Audio().canPlayType('audio/ogg; codecs=opus') ? '.opus' : '.m4a';
+const BASE = import.meta.env.BASE_URL;
+const AUDIO_EXT = '.wav';
 
 export type AudioState = 'idle' | 'loading' | 'playing' | 'paused' | 'error';
 
@@ -19,7 +20,7 @@ export function useAudio() {
     (entryId: string) => {
       const audio = getAudio();
       audio.pause();
-      audio.src = `/audio/${entryId}${AUDIO_EXT}`;
+      audio.src = `${BASE}audio/${entryId}${AUDIO_EXT}`;
       audio.load();
       setState('idle');
     },
@@ -31,7 +32,7 @@ export function useAudio() {
       const audio = getAudio();
 
       if (entryId && !audio.src.includes(entryId)) {
-        audio.src = `/audio/${entryId}${AUDIO_EXT}`;
+        audio.src = `${BASE}audio/${entryId}${AUDIO_EXT}`;
         audio.load();
       }
 

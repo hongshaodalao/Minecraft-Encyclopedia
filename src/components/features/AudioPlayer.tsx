@@ -41,7 +41,7 @@ export function AudioPlayer({ entryId, className = '' }: AudioPlayerProps) {
       </div>
       {state === 'error' && (
         <p className="text-center text-xs text-[#8D6E63] mt-2">
-          请将语音文件放入 public/audio/{entryId}.m4a
+          语音文件缺失
         </p>
       )}
     </div>
