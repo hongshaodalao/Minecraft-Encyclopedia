@@ -29,11 +29,12 @@ for (const entry of entries) {
     errors.push(`${prefix} category "${entry.category}" 不在有效范围内`);
   }
 
-  // 音频文件存在（检查 .m4a 和 .opus）
+  // 音频文件存在（检查 .wav、.m4a 和 .opus）
+  const audioPathWav = resolve(root, 'public/audio', `${entry.audio}.wav`);
   const audioPathOpus = resolve(root, 'public/audio', `${entry.audio}.opus`);
   const audioPathM4a = resolve(root, 'public/audio', `${entry.audio}.m4a`);
-  if (!existsSync(audioPathOpus) && !existsSync(audioPathM4a)) {
-    errors.push(`${prefix} 音频文件不存在: public/audio/${entry.audio}.opus 或 .m4a`);
+  if (!existsSync(audioPathWav) && !existsSync(audioPathOpus) && !existsSync(audioPathM4a)) {
+    errors.push(`${prefix} 音频文件不存在: public/audio/${entry.audio}.wav、.opus 或 .m4a`);
   }
 
   // 图片文件存在（WebP格式，按分类存放）
